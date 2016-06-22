@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 
-require('dotenv')
+require('dotenv').config();
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -30,8 +30,8 @@ app.use('/', routes);
 app.use('/users', users);
 
 passport.use(new LinkedInStrategy({
-  clientID: LINKEDIN_KEY,
-  clientSecret: LINKEDIN_SECRET,
+  clientID: process.env.LINKEDIN_KEY,
+  clientSecret: process.LINKEDIN_SECRET,
   callbackURL: "http://127.0.0.1:3000/auth/linkedin/callback",
   scope: ['r_emailaddress', 'r_basicprofile'],
 }, function(accessToken, refreshToken, profile, done) {
