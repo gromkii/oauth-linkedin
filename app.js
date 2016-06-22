@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 
+require('dotenv')
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
