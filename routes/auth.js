@@ -4,7 +4,7 @@ var express  = require('express'),
 
 //Do shit.
 router.route('/linkedin')
-  .get(passport.authenticate('linkedin', { state: somestate }),
+  .get(passport.authenticate('linkedin', { state: 'SOME STATE' }),
   (req, res) => {
     // Don't really need todo shit here.
   });
