@@ -9,4 +9,10 @@ router.route('/linkedin')
     // Don't really need todo shit here.
   });
 
+router.route('/linkedin/callback')
+  .get(passport.authenticate('linkedin', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+  }));
+
 module.exports = router;

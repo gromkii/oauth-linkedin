@@ -30,20 +30,15 @@ app.use('/', routes);
 app.use('/users', users);
 
 passport.use(new LinkedInStrategy({
-  clientID: process.env.LINKEDIN_KEY,
-  clientSecret: process.LINKEDIN_SECRET,
-  callbackURL: "http://127.0.0.1:3000/auth/linkedin/callback",
-  scope: ['r_emailaddress', 'r_basicprofile'],
-}, function(accessToken, refreshToken, profile, done) {
-  // asynchronous verification, for effect...
-  process.nextTick(function () {
-    // To keep the example simple, the user's LinkedIn profile is returned to
-    // represent the logged-in user. In a typical application, you would want
-    // to associate the LinkedIn account with a user record in your database,
-    // and return that user instead.
-    return done(null, profile);
-  });
-}));
+    clientID: process.env.LINKEDIN_CLIENT_ID,
+    clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/auth/linkedin/callback",
+    scope: ['r_emailaddress', 'r_basicprofile']
+  },
+  function(accessToken, refreshToken, profile, done) {
+    done(null, {id: profile.id, displayName: profile.displayName, token: accessToken})
+  }
+));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
