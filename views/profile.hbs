@@ -1,0 +1,23 @@
+{{#if user }}
+<h1>Hello {{ user.displayName }}</h1>
+
+
+<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+<script>
+
+$.ajax({
+  type: 'GET',
+  data: 'json',
+  url: 'https://api.linkedin.com/v1/people/~:(id,num-connections,picture-url)?format=json&person={{ user.id }}&format=json-get'
+}).done( (results) => {
+  $('#profile').attr('src', 'results.pictureUrl')
+});
+
+</script>
+
+
+<img id="profile">
+
+{{/if}}
+
+What's up.

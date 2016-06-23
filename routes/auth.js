@@ -11,8 +11,8 @@ router.route('/linkedin')
 
 router.route('/linkedin/callback')
   .get(passport.authenticate('linkedin', {
-    successRedirect: '/',
-    failureRedirect: '/login'
+    successRedirect: '/profile',
+    failureRedirect: '/'
   }));
 
 module.exports = router;
